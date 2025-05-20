@@ -22,3 +22,10 @@ In this work, the LibriSpeech train-clean-100 should be on `../asr/dataset/Libri
 The synthetic samples will be at `./synthetic/`
 
 
+
+## Miscellaneous
+For generating LibriSpeech, you should have to change the XTTS's character limites as shown in  
+
+https://github.com/coqui-ai/TTS/blob/dev/TTS/tts/layers/xtts/tokenizer.py#L598
+
+So, open /TTS/tts/layers/xtts/tokenizer.py and change 250 of "en" as 400 or 500 
