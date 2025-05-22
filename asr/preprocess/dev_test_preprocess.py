@@ -6,7 +6,6 @@ import torchaudio
 
 def get_librispeech_data(librispeech_path):
     audio_files = []
-    
     for root, _, files in os.walk(librispeech_path):
         transcriptions = {}
         for file in files:
@@ -24,7 +23,6 @@ def get_librispeech_data(librispeech_path):
                 _dir_dir_dir, set_name = os.path.split(_dir_dir)
                 _dir_dir_dir_dir, libri = os.path.split(_dir_dir_dir)
                 _dir_dir_dir_dir_dir, libri2 = os.path.split(_dir_dir_dir_dir)
-                
                 file_path = os.path.join(root, file)
                 save_dir = os.path.join(libri2, libri, set_name, speak_num, file_num, file)               
                 
@@ -33,24 +31,24 @@ def get_librispeech_data(librispeech_path):
                 
                 file_id = os.path.splitext(file)[0]
                 text = transcriptions.get(file_id, "") 
-
+                
                 audio_files.append((save_dir, duration, text))
     
     df = pd.DataFrame(audio_files, columns=["file_path", "duration", "text"])
     return df
 
-LIBRISPEECH_PATH = "./dataset/LibriSpeech/LibriSpeech/dev-clean"
+LIBRISPEECH_PATH = "../dataset/LibriSpeech/LibriSpeech/dev-clean"
 df = get_librispeech_data(LIBRISPEECH_PATH)
-df.to_csv('./dataset/dev-clean.csv', index=False)
+df.to_csv('../dataset/dev-clean.csv', index=False)
 
-LIBRISPEECH_PATH = "./dataset/LibriSpeech/LibriSpeech/dev-other"
+LIBRISPEECH_PATH = "../dataset/LibriSpeech/LibriSpeech/dev-other"
 df = get_librispeech_data(LIBRISPEECH_PATH)
-df.to_csv('./dataset/dev-other.csv', index=False)
+df.to_csv('../dataset/dev-other.csv', index=False)
 
-LIBRISPEECH_PATH = "./dataset/LibriSpeech/LibriSpeech/test-clean"
+LIBRISPEECH_PATH = "../dataset/LibriSpeech/LibriSpeech/test-clean"
 df = get_librispeech_data(LIBRISPEECH_PATH)
-df.to_csv('./dataset/test-clean.csv', index=False)
+df.to_csv('../dataset/test-clean.csv', index=False)
 
-LIBRISPEECH_PATH = "./dataset/LibriSpeech/LibriSpeech/test-other"
+LIBRISPEECH_PATH = "../dataset/LibriSpeech/LibriSpeech/test-other"
 df = get_librispeech_data(LIBRISPEECH_PATH)
-df.to_csv('./dataset/test-other.csv', index=False)
+df.to_csv('../dataset/test-other.csv', index=False)
